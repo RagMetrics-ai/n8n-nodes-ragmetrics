@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-jaasai",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "JaaS AI: Evaluate Chat Bots",
   "keywords": [
     "n8n-community-node-package",
