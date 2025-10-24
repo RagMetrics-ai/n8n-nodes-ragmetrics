@@ -1,9 +1,9 @@
 import {
   ICredentialType,
   INodeProperties,
-	//ICredentialsDecrypted,
-	//INodeCredentialTestResult,
-	ICredentialTestRequest,
+  ICredentialTestRequest,
+  IHttpRequestOptions,
+  ICredentialDataDecryptedObject,
 } from 'n8n-workflow';
 
 export class JaasaiApi implements ICredentialType {
@@ -26,12 +26,19 @@ export class JaasaiApi implements ICredentialType {
 
   test: ICredentialTestRequest = {
     request: {
-      url: 'https://api.jaas-ai.com/health', // or a test endpoint
-      method: 'GET', // or 'POST' if needed
-      //headers: {
-      //  'Authorization': '=Bearer {{$credentials.apiKey}}',
-      //},
+      url: 'https://api.jaas-ai.com/health',
+      method: 'GET',
     },
-
   };
+
+  async authenticate(
+    credentials: ICredentialDataDecryptedObject,
+    requestOptions: IHttpRequestOptions,
+  ): Promise<IHttpRequestOptions> {
+    requestOptions.headers = {
+      ...requestOptions.headers,
+      'Authorization': `Bearer ${credentials.apiKey}`,
+    };
+    return requestOptions;
+  }
 }

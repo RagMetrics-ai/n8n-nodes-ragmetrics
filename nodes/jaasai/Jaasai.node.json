@@ -3,7 +3,7 @@
   "name": "jaasai",
   "icon": "file:jaas_icon.svg",
   "group": ["transform"],
-  "version": 1,
+  "version": 1.0,
   "description": "JaaS AI: Evaluate Chat Bots",
   "defaults": {
     "name": "JaasAI"
