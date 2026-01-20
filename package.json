@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-ragmetrics",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Ragmetrics: Evaluate Chat Bots",
   "keywords": [
     "n8n-community-node-package",
@@ -12,7 +12,7 @@
   "homepage": "https://www.ragmetrics.ai",
   "author": {
     "name": "Ragmetrics",
-    "email": "info@ragmetrics.ai"
+    "email": "hernan@ragmetrics.ai"
   },
   "repository": {
     "type": "git",
