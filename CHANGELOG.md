@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.4] - 2026-01-20
+### Changed
+- Updated author email to hernan@ragmetrics.ai
+
 ## [0.1.3] - 2026-01-20
 ### Changed
 - Updated repository URL to RagMetrics-ai organization
