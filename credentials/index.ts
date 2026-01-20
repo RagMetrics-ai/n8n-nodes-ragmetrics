@@ -1,5 +1,5 @@
-import { JaasaiApi } from './JaasaiApi.credentials';
+import { RagmetricsApi } from './RagmetricsApi.credentials';
 
 export {
-  JaasaiApi,
+  RagmetricsApi,
 };

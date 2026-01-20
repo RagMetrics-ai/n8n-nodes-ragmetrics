@@ -1,0 +1,75 @@
+{
+  "displayName": "Ragmetrics",
+  "name": "ragmetrics",
+  "icon": "file:ragmetricslogo.png",
+  "group": ["transform"],
+  "version": "1.0.1",
+  "description": "Ragmetrics: Evaluate AI Agents",
+  "defaults": {
+    "name": "Ragmetrics"
+  },
+  "inputs": ["main"],
+  "outputs": ["main"],
+  "credentials": [
+    {
+      "name": "ragmetricsApi",
+      "required": true
+    }
+  ],
+  "properties": [
+    {
+      "displayName": "Question",
+      "name": "question",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "description": "The question that was asked to the AI agent"
+    },
+    {
+      "displayName": "Ground Truth",
+      "name": "ground_truth",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "description": "The expected correct answer for comparison"
+    },
+    {
+      "displayName": "Answer",
+      "name": "answer",
+      "type": "string",
+      "default": "",
+      "required": true,
+      "description": "The answer provided by the AI agent"
+    },
+    {
+      "displayName": "Context",
+      "name": "context",
+      "type": "string",
+      "default": "",
+      "description": "Additional context for the evaluation"
+    },
+    {
+      "displayName": "Conversation ID",
+      "name": "conversation_id",
+      "type": "string",
+      "default": "",
+      "description": "The conversation identifier"
+    },
+    {
+      "displayName": "Evaluation Group ID",
+      "name": "eval_group_id",
+      "type": "string",
+      "default": "",
+      "description": "The evaluation group identifier"
+    },
+    {
+      "displayName": "Type",
+      "name": "type",
+      "type": "string",
+      "default": "S",
+      "required": true,
+      "description": "Evaluation type identifier (single character)"
+    }
+  ]
+}
+

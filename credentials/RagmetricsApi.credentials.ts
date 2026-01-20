@@ -6,10 +6,10 @@ import {
   ICredentialDataDecryptedObject,
 } from 'n8n-workflow';
 
-export class JaasaiApi implements ICredentialType {
-  name = 'jaasaiApi';
-  displayName = 'JaaS AI API';
-  documentationUrl = 'https://jaas-ai.net';
+export class RagmetricsApi implements ICredentialType {
+  name = 'ragmetricsApi';
+  displayName = 'Ragmetrics API';
+  documentationUrl = 'https://ragmetrics.ai';
   properties: INodeProperties[] = [
     {
       displayName: 'API Key',
@@ -20,14 +20,20 @@ export class JaasaiApi implements ICredentialType {
   		},
       default: '',
       required: true,
-      description: 'Your JaaS AI API key',
+      description: 'Your Ragmetrics API key',
     },
   ];
 
   test: ICredentialTestRequest = {
     request: {
-      url: 'https://api.jaas-ai.com/health',
-      method: 'GET',
+      url: 'https://api.ragmetrics.ai/api/client/login/',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: {
+        key: '={{ $credentials.apiKey }}',
+      },
     },
   };
 
@@ -37,7 +43,7 @@ export class JaasaiApi implements ICredentialType {
   ): Promise<IHttpRequestOptions> {
     requestOptions.headers = {
       ...requestOptions.headers,
-      'Authorization': `Bearer ${credentials.apiKey}`,
+      'Authorization': `Token ${(credentials.apiKey as string).trim()}`,
     };
     return requestOptions;
   }
