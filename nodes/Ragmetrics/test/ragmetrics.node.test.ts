@@ -43,11 +43,9 @@ describe('Ragmetrics Node', () => {
         if (param === 'ground_truth') return 'The capital of France is Paris.';
         if (param === 'answer') return 'The capital of France is Paris.';
         if (param === 'eval_group_id') return 'test-group';
-        if (param === 'criteria') return ['Hallucinations', 'Accuracy'];
         if (param === 'type') return 'S';
         if (param === 'context') return 'The capital of France is Paris.';
-        if (param === 'provider') return 'openai';
-        if (param === 'model') return 'gpt-4o';
+        if (param === 'conversation_id') return 'test-conversation';
         throw new Error(`Unexpected parameter ${param} requested at index ${index}`);
       }),
       getNode: jest.fn(),

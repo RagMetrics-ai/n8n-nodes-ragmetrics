@@ -12,14 +12,14 @@ import {
 
 export class Ragmetrics implements INodeType {
   description: INodeTypeDescription = {
-    displayName: 'Ragmetrics',
+    displayName: 'RagMetrics',
     name: 'ragmetrics',
     icon: 'file:Ragmetrics_blue.svg',
     group: ['transform'],
     version: 1,
-    description: 'Ragmetrics: Evaluate AI agents and outputs',
+    description: 'RagMetrics: Evaluate AI agents and outputs',
     defaults: {
-      name: 'Ragmetrics',
+      name: 'RagMetrics',
     },
     inputs: ['main' as NodeConnectionType],
     outputs: ['main' as NodeConnectionType],
@@ -75,7 +75,8 @@ export class Ragmetrics implements INodeType {
         displayName: 'Evaluation Group ID',
         name: 'eval_group_id',
         type: 'string',
-        default: 'd5ec449f-a88d-4093-a1db-3297d379a638',
+        default: '',
+        required: true,
         description: 'The evaluation group identifier',
       },
 			{
@@ -116,7 +117,7 @@ export class Ragmetrics implements INodeType {
           };
 
           // Debug logging
-          this.logger.debug('Ragmetrics Request Details', {
+          this.logger.debug('RagMetrics Request Details', {
             url: 'https://api.ragmetrics.ai/v2/single-evaluation/',
             method: 'POST',
             body: requestBody,
@@ -207,7 +208,7 @@ export class Ragmetrics implements INodeType {
           const errorMessage = (error as Error).message;
           const errorResponse = (error as any).response;
 
-          this.logger.error('Ragmetrics Request Failed', {
+          this.logger.error('RagMetrics Request Failed', {
             error: errorMessage,
             statusCode: errorResponse?.statusCode,
             statusText: errorResponse?.statusText,

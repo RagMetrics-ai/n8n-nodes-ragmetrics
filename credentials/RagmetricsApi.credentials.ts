@@ -8,7 +8,7 @@ import {
 
 export class RagmetricsApi implements ICredentialType {
   name = 'ragmetricsApi';
-  displayName = 'Ragmetrics API';
+  displayName = 'RagMetrics API';
   documentationUrl = 'https://ragmetrics.ai';
   properties: INodeProperties[] = [
     {
@@ -20,7 +20,7 @@ export class RagmetricsApi implements ICredentialType {
   		},
       default: '',
       required: true,
-      description: 'Your Ragmetrics API key',
+      description: 'Your RagMetrics API key',
     },
   ];
 

@@ -1,7 +1,12 @@
 ## RAGMETRICS 
 
-Ragmetrics is a turnkey evaluationAI service that scores, analyzes, validates and monitors any AI-generated text in seconds. Plug Ragmetrics into your workflow to ensure accuracy, consistency, and quality—without needing extra reviewers. The system evaluates responses based on customizable criteria and provides detailed scoring and reasoning.
-Ragmetrics has been proven to detect Hallucination in AI Agents and chat bots.
+### *The AI Trust Layer*
+
+Real-time monitoring and scoring mechanism integrated directly into your LLM pipeline. Monitor, measure, and improve your generative AI outputs with confidence as they happen in production.
+
+RagMetrics is a turnkey evaluationAI service that scores, analyzes, validates and monitors any AI-generated text in seconds. Plug RagMetrics into your workflow to ensure accuracy, consistency, and quality—without needing extra reviewers. The system evaluates responses based on customizable criteria and provides detailed scoring and reasoning.
+
+RagMetrics has been proven to detect Hallucination in AI Agents and chat bots.
 
 Visit: https://ragmetrics.ai/live-ai-evaluation
 
@@ -9,8 +14,9 @@ Visit: https://ragmetrics.ai/live-ai-evaluation
 
 ### Requirements
 
-To configure you n8n node, you need a Ragmetrics API key. For that you have to register for the service at ragmetrics.ai. You will also need a LLM Provider API key.
+To configure you n8n node, you need a RagMetrics API key. For that you have to register for the service at ragmetrics.ai. You will also need a LLM Provider API key.
 
+You can configure your account and get your RagMetrics API Key at: app.ragmetrics.ai
 
 ### Understanding the evaluation process
 
@@ -28,7 +34,6 @@ The evaluation process is very simple. It compares an *answer* to a specific *qu
 - . **Conversation ID:** The conversation is use to track the monitoring of different bots
 
 - . **type:** This is the type of evaluation. 
-
 
 - . **Conversation ID:** The conversation is use to track the monitoring of different bots
 
@@ -52,10 +57,10 @@ From Configuration:
 After the evaluation is completed almost in real time, the system returns the score for each of the metrics and the reasoning behind.
 
 
-### Using the n8n Ragmetrics Module
+### Using the n8n RagMetrics Module
 
 ***Configuration:*** The module requires the corresponding configuration:
-	- Ragmetrics API Key: linked to you account in ragmetrics.ai
+	- RagMetrics API Key: linked to your account in ragmetrics.ai
 	- Type of Evaluation: S - Simple, or C- Conversational
 	- Conversation ID: user created indicator to monitor different conversations
 	- Evaluation Group ID: obtained from the ragmetrics.ai application, used to monitor different groups of AI agents
@@ -65,6 +70,7 @@ After the evaluation is completed almost in real time, the system returns the sc
 	- answer: answer that has to be evaluated
 	- ground_truth_answer: source of truth for the answer to be evaluated
 	- context: additional information to help the evaluation process
+
 The inputs should be in Json Format.
 
 Obtain the results and monitor what is going on with your tools!

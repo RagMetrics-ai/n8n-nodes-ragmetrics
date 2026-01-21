@@ -1,12 +1,13 @@
 {
   "name": "n8n-nodes-ragmetrics",
-  "version": "0.1.5",
-  "description": "Ragmetrics: Evaluate Chat Bots",
+  "version": "0.1.6",
+  "description": "RagMetrics: Evaluate AI Agents",
   "keywords": [
     "n8n-community-node-package",
     "AI Evaluate",
     "Chat Bots Monitoring",
-    "Ragmetrics"
+    "RagMetrics",
+    "AI Agents Monitoring"
   ],
   "license": "MIT",
   "homepage": "https://www.ragmetrics.ai",

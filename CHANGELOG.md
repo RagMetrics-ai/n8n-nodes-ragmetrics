@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.1.6] - 2026-01-20
+### Fixed
+- Fixed typo in README: "you account" → "your account"
+
 ## [0.1.4] - 2026-01-20
 ### Changed
 - Updated author email to hernan@ragmetrics.ai
