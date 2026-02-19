@@ -94,9 +94,8 @@ export class Ragmetrics implements INodeType {
   async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
     const items = this.getInputData();
     const returnData: INodeExecutionData[] = [];
-			let t = items.length;
-			if (items.length>1) t=1;
-      for (let i = 0; i < t; i++) {
+
+    for (let i = 0; i < items.length; i++) {
         try {
           const question = this.getNodeParameter('question', i) as string;
           const groundTruth = this.getNodeParameter('ground_truth', i) as string;

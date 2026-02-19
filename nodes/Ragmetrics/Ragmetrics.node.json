@@ -4,9 +4,9 @@
   "icon": "file:ragmetricslogo.png",
   "group": ["transform"],
   "version": "1.0.1",
-  "description": "Ragmetrics: Evaluate AI Agents",
+  "description": "RagMetrics: Evaluate AI Agents",
   "defaults": {
-    "name": "Ragmetrics"
+    "name": "RagMetrics"
   },
   "inputs": ["main"],
   "outputs": ["main"],
