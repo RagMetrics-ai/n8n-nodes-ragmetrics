@@ -1,12 +1,9 @@
-
-import type { NodeConnectionType } from 'n8n-workflow';
-
 import {
   IExecuteFunctions,
   INodeExecutionData,
   INodeType,
   INodeTypeDescription,
-  //NodeApiError,
+  NodeConnectionTypes,
   NodeOperationError,
 } from 'n8n-workflow';
 
@@ -21,8 +18,8 @@ export class Ragmetrics implements INodeType {
     defaults: {
       name: 'RagMetrics',
     },
-    inputs: ['main' as NodeConnectionType],
-    outputs: ['main' as NodeConnectionType],
+    inputs: [NodeConnectionTypes.Main],
+    outputs: [NodeConnectionTypes.Main],
     credentials: [
       {
         name: 'ragmetricsApi',
@@ -31,12 +28,41 @@ export class Ragmetrics implements INodeType {
     ],
     properties: [
       {
+        displayName: 'Resource',
+        name: 'resource',
+        type: 'options',
+        noDataExpression: true,
+        options: [
+          {
+            name: 'Evaluation',
+            value: 'evaluation',
+          },
+        ],
+        default: 'evaluation',
+        required: true,
+      },
+      {
+        displayName: 'Operation',
+        name: 'operation',
+        type: 'options',
+        noDataExpression: true,
+        options: [
+          {
+            name: 'Evaluate',
+            value: 'evaluate',
+          },
+        ],
+        default: 'evaluate',
+        required: true,
+      },
+      {
         displayName: 'Question',
         name: 'question',
         type: 'string',
         default: '',
         required: true,
         description: 'The question that was asked to the AI agent',
+        displayOptions: { show: { resource: ['evaluation'], operation: ['evaluate'] } },
       },
       {
         displayName: 'Ground Truth',
@@ -45,6 +71,7 @@ export class Ragmetrics implements INodeType {
         default: '',
         required: true,
         description: 'The expected correct answer for comparison',
+        displayOptions: { show: { resource: ['evaluation'], operation: ['evaluate'] } },
       },
       {
         displayName: 'Answer',
@@ -53,6 +80,7 @@ export class Ragmetrics implements INodeType {
         default: '',
         required: true,
         description: 'The answer provided by the AI agent',
+        displayOptions: { show: { resource: ['evaluation'], operation: ['evaluate'] } },
       },
       {
         displayName: 'Context',
@@ -63,6 +91,7 @@ export class Ragmetrics implements INodeType {
         },
         default: '',
         description: 'Context for the evaluation',
+        displayOptions: { show: { resource: ['evaluation'], operation: ['evaluate'] } },
       },
       {
         displayName: 'Conversation ID',
@@ -70,6 +99,7 @@ export class Ragmetrics implements INodeType {
         type: 'string',
         default: '',
         description: 'The conversation identifier',
+        displayOptions: { show: { resource: ['evaluation'], operation: ['evaluate'] } },
       },
       {
         displayName: 'Evaluation Group ID',
@@ -78,14 +108,16 @@ export class Ragmetrics implements INodeType {
         default: '',
         required: true,
         description: 'The evaluation group identifier',
+        displayOptions: { show: { resource: ['evaluation'], operation: ['evaluate'] } },
       },
-			{
+      {
         displayName: 'Type',
         name: 'type',
         type: 'string',
         default: 'S',
         required: true,
         description: 'Evaluation type identifier (single character)',
+        displayOptions: { show: { resource: ['evaluation'], operation: ['evaluate'] } },
       },
     ],
   };
@@ -114,20 +146,6 @@ export class Ragmetrics implements INodeType {
             eval_group_id: evalGroupId,
             type,
           };
-
-          // Debug logging
-          this.logger.debug('RagMetrics Request Details', {
-            url: 'https://api.ragmetrics.ai/v2/single-evaluation/',
-            method: 'POST',
-            body: requestBody,
-          });
-
-          // Get credentials for debugging (masked)
-          const credentials = await this.getCredentials('ragmetricsApi');
-          const apiKeyPreview = credentials.apiKey
-            ? `${(credentials.apiKey as string).substring(0, 10)}...`
-            : 'NOT SET';
-          this.logger.debug('API Key (masked)', { apiKey: apiKeyPreview });
 
           const ragmetricsData = await this.helpers.httpRequestWithAuthentication.call(
             this,
@@ -203,17 +221,8 @@ export class Ragmetrics implements INodeType {
             },
           });
         } catch (error) {
-          // Enhanced error logging
           const errorMessage = (error as Error).message;
           const errorResponse = (error as any).response;
-
-          this.logger.error('RagMetrics Request Failed', {
-            error: errorMessage,
-            statusCode: errorResponse?.statusCode,
-            statusText: errorResponse?.statusText,
-            responseBody: errorResponse?.body,
-            responseHeaders: errorResponse?.headers,
-          });
 
           if (this.continueOnFail()) {
             returnData.push({

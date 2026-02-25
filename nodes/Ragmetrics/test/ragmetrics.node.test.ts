@@ -11,11 +11,9 @@ describe('Ragmetrics Node', () => {
         ground_truth: 'The capital of France is Paris.',
         answer: 'The capital of France is Paris.',
         context: 'The capital of France is Paris.',
+        conversation_id: 'test-conversation',
         eval_group_id: 'test-group',
-        criteria: ['Hallucinations', 'Accuracy'],
         type: 'S',
-        provider: 'openai',
-        model: 'gpt-4o',
       });
       return Promise.resolve({
         message: 'Evaluation complete',
@@ -37,7 +35,7 @@ describe('Ragmetrics Node', () => {
         },
       ]),
       getNodeParameter: jest.fn().mockImplementation((param: any, index: number) => {
-        if (param === 'resource') return 'evaluate';
+        if (param === 'resource') return 'evaluation';
         if (param === 'operation') return 'evaluate';
         if (param === 'question') return 'What is the capital of France?';
         if (param === 'ground_truth') return 'The capital of France is Paris.';

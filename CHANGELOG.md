@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.8] - 2026-02-19
+### Changed
+- Credential test no longer sends API key in body; uses header auth via authenticate method
+- Simplified credential authenticate (header-based Token auth)
+- Node inputs/outputs use `NodeConnectionTypes.Main`
+- Added required Resource and Operation (Evaluation / Evaluate) with displayOptions
+- Removed logger usage in node (users cannot see output)
+- Iterate over all input items (standard n8n pattern) instead of single-item cap
+### Fixed
+- Test mock: resource returns `evaluation`, expected request body matches node (conversation_id, no criteria/provider/model)
+- Ragmetrics.node.json synced with node (resource, operation, displayName)
+- Credentials typeOptions indentation
+
 ## [0.1.6] - 2026-01-20
 ### Fixed
 - Default group is now ""

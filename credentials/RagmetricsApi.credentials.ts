@@ -15,15 +15,16 @@ export class RagmetricsApi implements ICredentialType {
       displayName: 'API Key',
       name: 'apiKey',
       type: 'string',
-			typeOptions: {
-    		password: true,
-  		},
+      typeOptions: {
+        password: true,
+      },
       default: '',
       required: true,
       description: 'Your RagMetrics API key',
     },
   ];
 
+  // Test request must match: curl -X POST "https://api.ragmetrics.ai/api/client/login/" -H "Content-Type: application/json" -d '{"key": "API KEY"}'
   test: ICredentialTestRequest = {
     request: {
       url: 'https://api.ragmetrics.ai/api/client/login/',
@@ -41,10 +42,11 @@ export class RagmetricsApi implements ICredentialType {
     credentials: ICredentialDataDecryptedObject,
     requestOptions: IHttpRequestOptions,
   ): Promise<IHttpRequestOptions> {
-    requestOptions.headers = {
-      ...requestOptions.headers,
-      'Authorization': `Token ${(credentials.apiKey as string).trim()}`,
-    };
+    // Uses header auth: Authorization Token (API key is sent in header, not body)
+    const apiKey = (credentials.apiKey as string).trim();
+    requestOptions.headers = Object.assign({}, requestOptions.headers, {
+      Authorization: `Token ${apiKey}`,
+    });
     return requestOptions;
   }
 }
