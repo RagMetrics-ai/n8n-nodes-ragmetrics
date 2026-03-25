@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.11] - 2026-03-25
+### Changed
+- Removed erroneous self-dependency on `n8n-nodes-ragmetrics` so `npm ci` matches the lockfile
+
+## [0.1.10] - 2026-02-19
+### Changed
+- Updated logo references to use `logo_bw.svg` for node and credential icons
+- Updated GitHub Actions publish workflow to Node 24 (`actions/checkout@v5`, `actions/setup-node@v5`)
+
 ## [0.1.9] - 2026-02-19
 ### Changed
 - Added GitHub Actions publish workflow with npm provenance support (`.github/workflows/publish.yml`)
