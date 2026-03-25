@@ -4,17 +4,18 @@ import {
   INodeType,
   INodeTypeDescription,
   NodeConnectionTypes,
-  NodeOperationError,
+  NodeApiError,
 } from 'n8n-workflow';
 
 export class Ragmetrics implements INodeType {
   description: INodeTypeDescription = {
     displayName: 'RagMetrics',
     name: 'ragmetrics',
-    icon: 'file:Ragmetrics_blue.svg',
+    icon: 'file:logo_bw.svg',
     group: ['transform'],
     version: 1,
     description: 'RagMetrics: Evaluate AI agents and outputs',
+    subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
     defaults: {
       name: 'RagMetrics',
     },
@@ -236,7 +237,7 @@ export class Ragmetrics implements INodeType {
               },
             });
           } else {
-            throw new NodeOperationError(this.getNode(), error);
+            throw new NodeApiError(this.getNode(), error as any);
           }
         }
       }

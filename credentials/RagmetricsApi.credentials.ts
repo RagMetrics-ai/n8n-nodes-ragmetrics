@@ -10,6 +10,8 @@ export class RagmetricsApi implements ICredentialType {
   name = 'ragmetricsApi';
   displayName = 'RagMetrics API';
   documentationUrl = 'https://ragmetrics.ai';
+  // Cast to `any` because n8n's `Icon` type is a union that may vary by version.
+  icon = 'file:logo_bw.svg' as any;
   properties: INodeProperties[] = [
     {
       displayName: 'API Key',
@@ -24,17 +26,13 @@ export class RagmetricsApi implements ICredentialType {
     },
   ];
 
-  // Test request must match: curl -X POST "https://api.ragmetrics.ai/api/client/login/" -H "Content-Type: application/json" -d '{"key": "API KEY"}'
+  // Credential test uses a lightweight authenticated endpoint.
+  // Equivalent curl:
+  // curl -X GET -H "Authorization: Token <API_KEY>" "https://api.ragmetrics.ai/v2/user/profile/"
   test: ICredentialTestRequest = {
     request: {
-      url: 'https://api.ragmetrics.ai/api/client/login/',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: {
-        key: '={{ $credentials.apiKey }}',
-      },
+      url: 'https://api.ragmetrics.ai/v2/user/profile/',
+      method: 'GET',
     },
   };
 
@@ -42,7 +40,7 @@ export class RagmetricsApi implements ICredentialType {
     credentials: ICredentialDataDecryptedObject,
     requestOptions: IHttpRequestOptions,
   ): Promise<IHttpRequestOptions> {
-    // Uses header auth: Authorization Token (API key is sent in header, not body)
+    // Uses header auth for credential test and regular API endpoints.
     const apiKey = (credentials.apiKey as string).trim();
     requestOptions.headers = Object.assign({}, requestOptions.headers, {
       Authorization: `Token ${apiKey}`,

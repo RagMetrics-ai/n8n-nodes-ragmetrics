@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.9] - 2026-02-19
+### Changed
+- Added GitHub Actions publish workflow with npm provenance support (`.github/workflows/publish.yml`)
+- Updated credential test endpoint to `GET /v2/user/profile/` with Authorization header auth
+- Standardized credential and node icons to use blue logo variant
+
 ## [0.1.8] - 2026-02-19
 ### Changed
 - Credential test no longer sends API key in body; uses header auth via authenticate method
